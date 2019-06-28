@@ -2,9 +2,9 @@
 
 El archivo de configuración debería permanecer solo en las máquinas de desarrollo, es mejor no subirlo al repositorio dado que incluye información sensible. Este archivo `deploy-secrets.yml` debe ubicarse en `/config`
 
-Config file should stay only in development machines, it is better not uploading it to server due to the sentitive information inside it. This file `deploy-secrets.yml` should be placed in `/config`
+*Config file should stay only in development machines, it is better not uploading it to server due to the sentitive information inside it. This file `deploy-secrets.yml` should be placed in `/config`*
 
-Ejemplo de estructura de archivo deploy\-secrets.yml / Structure sample for config file deploy\-secrets.yml
+Ejemplo de estructura de archivo deploy\-secrets.yml / *Structure sample for config file deploy\-secrets.yml*
 
 ```yml
 staging:
@@ -21,25 +21,24 @@ staging:
   db_password: "mysql_password"
 ```
 
-Los datos que debe contener cada una de las variables son los siguientes:
-Data associated to each variable:
+Los datos que debe contener cada una de las variables son los siguientes: / *Data associated to each variable:*
 
-* `application`: nombre asignado a la aplicación / Application name
-* `repo_url`: ssh git donde esté versionado el proyecto / ssh to git project repo
-* `deploy_to`: ruta física en el servidor donde está alojado el proyecto y donde van apareciendo los diferentes deploys / path in server where project is going to be stored and deploys with place it
-* `ssh_port`: numero de puerto de escucha ssh del servidor / ssh port in the server
-* `server`: IP física accesible desde internet del servidor que aloja la aplicación / server IP
-* `server_name`: nombre asociado a esa IP por DNS / server DNS
-* `db_server`: ip donde esta alojada la base de datos mysql del proyecto / database server ip 
-* `user`: usuario que utilizamos para conectadnos por ssh, normalmente **web** / user we use to connect via ssh, usually **web**
-* `db_user`: usuario de conexión mysql / mysql user
-* `db_password`: contraseña del usuario de mysql / mysql password 
+* `application`: nombre asignado a la aplicación / *Application name*
+* `repo_url`: ssh git donde esté versionado el proyecto / *ssh to git project repo*
+* `deploy_to`: ruta física en el servidor donde está alojado el proyecto y donde van apareciendo los diferentes deploys / *path in server where project is going to be stored and deploys with place it*
+* `ssh_port`: numero de puerto de escucha ssh del servidor / *ssh port in the server*
+* `server`: IP física accesible desde internet del servidor que aloja la aplicación / *server IP*
+* `server_name`: nombre asociado a esa IP por DNS / *server DNS*
+* `db_server`: ip donde esta alojada la base de datos mysql del proyecto / *database server ip*
+* `user`: usuario que utilizamos para conectadnos por ssh, normalmente **web** / *user we use to connect via ssh, usually* **web** 
+* `db_user`: usuario de conexión mysql / *mysql user*
+* `db_password`: contraseña del usuario de mysql / *mysql password*
 
 # 2.  DESPLIEGUE / DEPLOYMENT
 
 Una vez establecidos los valores correctos de configuración, desde una máquina de desarrollo, deberemos ejecutar, desde el directorio raíz de la aplicación el comando:
 
-Once configured this file, from a development machine, we must run from from proyect path:
+*Once configured this file, from a development machine, we must run from from proyect path:*
 
 ```yml
 cap staging|production deploy:setup_config
@@ -67,7 +66,7 @@ cap staging|production deploy
 
 La primera ejecución realiza las migraciones de base de datos, bundle install y precompilado de assets por lo que puede tardar un rato en completarse. Una vez finalizada la ejecución sin errores el proyecto debería ser visible (siempre que haya resolución DNS) en la url asignada.
 
-# 4.  OBSERVACIONES
+# 3.  OBSERVACIONES / NOTES
 
 Para evitar meter la contraseña cada vez que se hace un deploy usando al usuario "web", se recomienda, en la carpeta .ssh del usuario "user" del servidor en el archivo authorized\_keys meter la clave publica del equipo desde el que se hace el deploy.
 
