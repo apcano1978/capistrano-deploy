@@ -4,9 +4,7 @@ El archivo de configuración debería permanecer solo en las máquinas de desarr
 
 Config file should stay only in development machines, it is better not uploading it to server due to the sentitive information inside it. This file `deploy-secrets.yml` should be placed in `/config`
 
-Ejemplo de estructura de archivo deploy\-secrets.yml
-
-Structure sample for config file deploy\-secrets.yml
+Ejemplo de estructura de archivo deploy\-secrets.yml / Structure sample for config file deploy\-secrets.yml
 
 ```yml
 staging:
@@ -24,21 +22,24 @@ staging:
 ```
 
 Los datos que debe contener cada una de las variables son los siguientes:
+Data associated to each variable:
 
-* `application`: nombre asignado a la aplicación
-* `repo_url`: ssh git donde esté versionado el proyecto.
-* `deploy_to`: ruta física en el servidor donde está alojado el proyecto y donde van apareciendo los diferentes deploys
-* `ssh\_port`: numero de puerto de escucha ssh del servidor
-**server**: IP física accesible desde internet del servidor que aloja la aplicación
-**server\_name**: nombre asociado a esa IP por DNS
-**db\_server**: ip donde esta alojada la base de datos mysql del proyecto
-**user**: usuario que utilizamos para conectadnos por ssh, normalmente ‘web’
-**db\_user**: usuario de conexión mysql
-**db\_password**: contraseña del usuario de mysql 
+* `application`: nombre asignado a la aplicación / Application name
+* `repo_url`: ssh git donde esté versionado el proyecto / ssh to git project repo
+* `deploy_to`: ruta física en el servidor donde está alojado el proyecto y donde van apareciendo los diferentes deploys / path in server where project is going to be stored and deploys with place it
+* `ssh_port`: numero de puerto de escucha ssh del servidor / ssh port in the server
+* `server`: IP física accesible desde internet del servidor que aloja la aplicación / server IP
+* `server_name`: nombre asociado a esa IP por DNS / server DNS
+* `db_server`: ip donde esta alojada la base de datos mysql del proyecto / database server ip 
+* `user`: usuario que utilizamos para conectadnos por ssh, normalmente **web** / user we use to connect via ssh, usually **web**
+* `db_user`: usuario de conexión mysql / mysql user
+* `db_password`: contraseña del usuario de mysql / mysql password 
 
-# 3.  EJECUCIÓN
+# 2.  DESPLIEGUE / DEPLOYMENT
 
 Una vez establecidos los valores correctos de configuración, desde una máquina de desarrollo, deberemos ejecutar, desde el directorio raíz de la aplicación el comando:
+
+Once configured this file, from a development machine, we must run from from proyect path:
 
 ```yml
 cap staging|production deploy:setup_config
@@ -46,16 +47,13 @@ cap staging|production deploy:setup_config
 
 Donde staging|production será el entorno que queramos desplegar (solo uno al mismo tiempo). LA ejecución de este comando lleva a cabo las siguientes acciones:
 
--   Crea la ubicación física en el servidor de destino de la estructura
-    de ficheros necesario.
+* Crea la ubicación física en el servidor de destino de la estructura de ficheros necesario.
 
--   Crea un site de ngingx para servir el proyecto
+* Crea un site de ngingx para servir el proyecto
 
--   Crea los ficheros de configuración de la aplicación necesarios
-    (incluyendo el fichero database.yml con los parámetros de conexión a
-    la base de datos.)
+* Crea los ficheros de configuración de la aplicación necesarios (incluyendo el fichero database.yml con los parámetros de conexión a la base de datos.)
 
--   Crea el script de arranque del servidor de aplicaciones unicorn
+* Crea el script de arranque del servidor de aplicaciones unicorn
 
 Si la ejecución del comando se ha ha realizado correctamente, **no debe volver a ajecutarse durante el ciclo de vida del proyecto en dicha máquina.**
 
