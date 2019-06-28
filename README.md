@@ -11,7 +11,7 @@ Structure sample for config file deploy\-secrets.yml
 ```yml
 staging:
   application: "appname"
-  repo_url: "git@bitbucket.org:lextrend/XXXXXX.git"
+  repo_url: "git@github.com:my-github-account/my-project-name.git"
   deploy_to: "/home/web/apps/appname"
   ssh_port: 22
   server: "94.23.6.32"
@@ -23,12 +23,12 @@ staging:
   db_password: "mysql_password"
 ```
 
-Los datos que debe contener cda una de las variables son los siguientes:
+Los datos que debe contener cada una de las variables son los siguientes:
 
-**application**: nombre asignado a la aplicación
-**repo\_url**: ssh git donde esté versionado el proyecto.
-**deploy\_to**: ruta física en el servidor donde está alojado el proyecto y donde van apareciendo los diferentes deploys
-**ssh\_port**: numero de puerto de escucha ssh del servidor
+* `application`: nombre asignado a la aplicación
+* `repo_url`: ssh git donde esté versionado el proyecto.
+* `deploy_to`: ruta física en el servidor donde está alojado el proyecto y donde van apareciendo los diferentes deploys
+* `ssh\_port`: numero de puerto de escucha ssh del servidor
 **server**: IP física accesible desde internet del servidor que aloja la aplicación
 **server\_name**: nombre asociado a esa IP por DNS
 **db\_server**: ip donde esta alojada la base de datos mysql del proyecto
