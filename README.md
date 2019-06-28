@@ -1,16 +1,12 @@
-# 1.  CAPISTRANO
+# 1.  CONFIGURACIÓN / CONFIGURATION
 
-Todos los proyectos RoR desarrollados internamente incorporan Capistrano 3 como mecanismo de despliegue en los servidores de Staging y Producción. El funcionamiento general del proceso puede consultarse en la documentación de la gema <http://capistranorb.com/>
+El archivo de configuración debería permanecer solo en las máquinas de desarrollo, es mejor no subirlo al repositorio dado que incluye información sensible. Este archivo `deploy-secrets.yml` debe ubicarse en `/config`
 
-Para evitar realizar una configuración específica para cada proyecto, se ha creado un repositorio público en Github con la estructura de ficheros utilizada y customizaciones. Salvo raras excepciones, no es necesario realizar cambios sobre el repo y toda la configuración se realiza sobre un único fichero yml de configuración.
-
-<https://github.com/LextrendIT/capistrano-recipe>
-
-# 2.  CONFIGURACIÓN
-
-El archivo de configuración se debe incluir en /config/deploy\_secrets.yml y no debe subirse al repositorio por seguridad. En el repositorio de los proyectos se incluirá un fichero deploy\_secrets.yml.example con la plantilla necesario pero no debería incluir en ningún caso datos reales
+Config file should stay only in development machines, it is better not uploading it to server due to the sentitive information inside it. This file `deploy-secrets.yml` should be placed in `/config`
 
 Ejemplo de estructura de archivo deploy\-secrets.yml
+
+Structure sample for config file deploy\-secrets.yml
 
 ```yml
 staging:
